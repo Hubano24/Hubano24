@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercice4 semaine5</title>
+    <script>
+        let tableauNombres = [5, 12, 8, 3, 20];
+
+        function afficherTableau() {
+            document.getElementById('tableauAffichage').textContent = 'Tableau : ' + tableauNombres.join(', ');
+        }
+
+        function ajouterNombre() {
+            const nouvelElement = parseInt(document.getElementById('nouveauNombre').value);
+            if (!isNaN(nouvelElement)) {
+                tableauNombres.push(nouvelElement);
+                afficherTableau();
+                document.getElementById('nouveauNombre').value = ''; // Réinitialiser le champ de saisie
+            } else {
+                alert('Veuillez entrer un nombre valide.');
+            }
+        }
+
+        function supprimerNombre() {
+            const nombreASupprimer = parseInt(document.getElementById('nombreASupprimer').value);
+            const index = tableauNombres.indexOf(nombreASupprimer);
+            if (index !== -1) {
+                tableauNombres.splice(index, 1);
+                afficherTableau();
+                document.getElementById('nombreASupprimer').value = ''; // Réinitialiser le champ de saisie
+            } else {
+                alert('Nombre non trouvé dans le tableau.');
+            }
+        }
+
+        function trierTableau() {
+            tableauNombres.sort((a, b) => a - b);
+            afficherTableau();
+        }
+
+        window.onload = afficherTableau; // Afficher le tableau au chargement de la page
+    </script>
+</head>
+<body>
+    <h1>Exercice 4 : Gestion d'un Tableau de Nombres</h1>
+    <div>
+        <label for="nouveauNombre">Ajouter un nombre :</label>
+        <input type="number" id="nouveauNombre">
+        <button onclick="ajouterNombre()">Ajouter</button>
+    </div>
+    
+    <div>
+        <label for="nombreASupprimer">Supprimer un nombre :</label>
+        <input type="number" id="nombreASupprimer">
+        <button onclick="supprimerNombre()">Supprimer</button>
+    </div>
+    
+    <div>
+        <button onclick="trierTableau()">Trier le tableau</button>
+    </div>
+    
+    <p id="tableauAffichage"></p>
+</body>
+</html>
